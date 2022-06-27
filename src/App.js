@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
 
-function App() {
+import SideBar from './components/layout/SideBar'
+import MainMenu from './components/layout/MainMenu'
+import MainFooter from './components/layout/MainFooter'
+
+import {Routes,Route} from "react-router-dom"
+
+import  RecruitmentsPage from './pages/RecruitmentsPage'
+import CreateRecruitment from './pages/CreateRecruitment'
+import EditRecruitment from './pages/EditRecruitment'
+
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app sm:flex bg-stone-100 font-bebas">
+      {/*Side bar*/}
+      <SideBar/>
+      {/*Main Section*/}
+      <main className='md:flex-[0.8] flex flex-col justify-between'>
+      <MainMenu/>
+      <Routes>
+        <Route path='/' element={<RecruitmentsPage/>}/>
+        <Route exact path='/create-recruitment' element={<CreateRecruitment/>}/>
+        <Route exact path='/edit-recruitment/:id' element={<EditRecruitment/>}/>
+        <Route/>
+      </Routes>
+      <MainFooter/>
+      </main>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
